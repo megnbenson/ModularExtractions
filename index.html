@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <!-- include A-Frame obviously -->
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+  <!-- include ar.js for A-Frame -->
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+  <script src="https://unpkg.com/aframe-particle-system-component@1.x.x/dist/aframe-particle-system-component.min.js"></script> 
+
+  <!-- Ellements to do loading screen -->
+  <head>
+    <style>
+    .loading { display:block; visibility: visible; position: absolute; z-index: 999; top: 0px; left: 0px; width: 100%; height: 100%;background-image: url("./originals symbols/drill_cauldron.png"); background-position: center; background-repeat: no-repeat; background-size: cover; }
+    </style>
+    
+    <script>
+       window.onload=function() {
+        
+        var element = document.getElementById("LoadingScreen");
+        element.onclick  = function() {
+            openFullscreen();
+            console.log("Clicked!!!");
+            var element = document.getElementById("LoadingScreen");
+                element.style.display = "none";
+            };
+          console.log("loaded!")
+        }
+
+      var elem = document.documentElement;
+      function openFullscreen() {
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) { /* Safari */
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { /* IE11 */
+          elem.msRequestFullscreen();
+        }
+      }
+      
+      function closeFullscreen() {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) { /* Safari */
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { /* IE11 */
+          document.msExitFullscreen();
+        }
+      }
+       
+    </script>
+    
+    </head>
+    
+      <body style='margin : 0px; overflow: hidden;'>
+    
+    <!--  Div to hide AR + Prompt-->    
+    <div id="LoadingScreen" class="loading"></div>
+    
+    <div id="AR" style="position:relative;width:100%;height:100%;">
+    <a-scene embedded arjs="debugUIEnabled: false" vr-mode-ui="enabled: false" >
+
+      <!-- Create a assets with id to hold our .gltf -->
+      <a-assets>
+        <!-- utile .gltf -->
+        <a-asset-item id="blob" src="models/Blob.glb" ></a-asset-item>
+        <a-asset-item id="ground" src="models/noiseyGround.glb" ></a-asset-item>
+        <a-asset-item id="pipe" src="models/pipe.glb"></a-asset-item>
+
+        <!-- plantNado .gltf -->
+        <a-asset-item id="plant" src="models/plantNado/plant tornado.glb" ></a-asset-item>
+
+        <!-- caged.gltf -->
+        <a-asset-item id="cage" src="models/caged/cage.glb" ></a-asset-item>
+        <a-asset-item id="caged" src="models/caged/cagedGoop.glb" ></a-asset-item>
+
+        <!-- caged.gltf -->
+        <a-asset-item id="cage" src="models/caged/cage.glb" ></a-asset-item>
+        <a-asset-item id="caged" src="models/caged/cagedGoop.glb" ></a-asset-item>
+
+        <!-- drill.gltf -->
+        <a-asset-item id="drill" src="models/drill/Drill.glb" ></a-asset-item>
+
+        <!-- Bot Eye.gltf -->
+        <a-asset-item id="eye" src="models/botEye/botEye.glb" ></a-asset-item>
+
+        <!-- pyramid .gltf -->
+        <a-asset-item id="pyramid" src="models/pyramid/pyramid.glb" ></a-asset-item>
+        <a-asset-item id="pyramidblob" src="models/pyramid/pyramid goop.glb" ></a-asset-item>
+        <a-asset-item id="pyramidtube" src="models/pyramid/pyramid tube.glb" ></a-asset-item>
+
+        <!-- cauldron .gltf -->
+        <a-asset-item id="cauldron" src="models/couldron/cauldronFull.glb" ></a-asset-item>
+
+        <!-- intergalactic .gltf -->
+        <a-asset-item id="intergoop" src="models/Intergalactic/interGoop.glb" ></a-asset-item>
+        <a-asset-item id="intergooprock1" src="models/Intergalactic/interGoopRock1.glb" ></a-asset-item>
+        <a-asset-item id="intergooprock2" src="models/Intergalactic/interGoopRock2.glb" ></a-asset-item>
+        
+         <!-- time .gltf -->
+         <a-asset-item id="timegoop" src="models/time/BlobTime.glb" ></a-asset-item>
+         <a-asset-item id="timecone" src="models/time/coneTime.glb" ></a-asset-item>
+                
+
+        <!-- SpinnySpikyDiscs -->
+        <a-asset-item id="Circle.002" src="./models/spinningSpikyDiscsWithSplash/Circle.002.gltf"></a-asset-item>
+				<a-asset-item id="SplashyCube" src="./models/spinningSpikyDiscsWithSplash/splashdCube.glb"></a-asset-item> 
+
+        <!-- SpinnySpikyDiscs -->
+        <a-asset-item id="BlueBlob" src="./models/spinningSpikyDiscs/blueBlob.glb"></a-asset-item>
+				<a-asset-item id="LilPipes" src="./models/spinningSpikyDiscs/pipes.glb"></a-asset-item>
+				<a-asset-item id="Spike" src="./models/spinningSpikyDiscs/spike.glb"></a-asset-item>
+				
+      </a-assets>
+
+
+ <!-- time  -->
+     <a-marker type='pattern' url='./trackers/TimeMrkr.patt'>
+            <a-entity rotation="-90 0 0" >
+
+              <a-entity   position="0 0.4 0" 
+              scale="0.2  0.2 0.2"
+              gltf-model="#timegoop"
+              animation-mixer>
+              </a-entity>
+
+              <a-entity   position="0 0.4 0" 
+              scale="0.2  0.2 0.2"
+              gltf-model="#timecone"
+              animation-mixer>
+              </a-entity>
+
+              <a-entity   position="0 -0.4 0" 
+              rotation="180 0 0"
+              scale="0.2  0.2 0.2"
+              gltf-model="#timecone"
+              animation-mixer>
+              </a-entity>
+
+            </a-entity>
+
+     
+            <a-entity id="pipes" rotation="-90 0 0" >
+              <a-entity   position="0 0.4 0" 
+              scale="0.2  0.2 0.2"
+              gltf-model="#pipe"
+              animation-mixer>
+              </a-entity>
+              <a-entity   position="0 -0.4 0" 
+              rotation="0 0 180"
+              scale="0.2  0.2 0.2"
+              gltf-model="#pipe"
+              animation-mixer>
+              </a-entity>
+            </a-entity>
+      </a-marker>
+      
+
+       <!-- cauldron  -->
+     <a-marker type='pattern' url='./trackers/soupy_cauldron.patt'>
+      <!-- <a-entity scale="0.75 0.75 0.75"> -->
+            <a-entity rotation="-90 0 0" >
+
+              <a-entity   position="0 -0.3 0" 
+              scale="0.15  0.15 0.15"
+              gltf-model="#cauldron"
+              animation-mixer>
+              </a-entity>
+
+            </a-entity>
+
+     
+            <a-entity id="pipes" rotation="-90 0 0" >
+              <a-entity   position="0 0.4 0" 
+              scale="0.2  0.2 0.2"
+              gltf-model="#pipe"
+              animation-mixer>
+              </a-entity>
+              <a-entity   position="0 -0.4 0" 
+              rotation="0 0 180"
+              scale="0.2  0.2 0.2"
+              gltf-model="#pipe"
+              animation-mixer>
+              </a-entity>
+            </a-entity>
+      <!-- </a-entity> -->
+      </a-marker>
+
+
+
+      <!--interGoop  --> 
+     <a-marker type='pattern' url='./trackers/intergalactic_goop.patt'>
+
+      <a-entity rotation="-90 0 0" >
+
+        <a-entity   position="0 0.15 0" 
+        scale="0.2  0.2 0.2"
+        gltf-model="#intergoop"
+        animation-mixer>
+        </a-entity>
+
+        <a-entity   position="0 0.15 0" 
+        scale="0.2  0.2 0.2"
+        gltf-model="#intergooprock1"
+        animation-mixer>
+        </a-entity>
+
+        <a-entity   position="0 0.15 0" 
+        scale="0.2  0.2 0.2"
+        gltf-model="#intergooprock2"
+        animation-mixer>
+        </a-entity>
+
+      </a-entity>
+      
+
+      <a-entity id="pipes" rotation="-90 0 0" >
+        <a-entity   position="0 0.4 0" 
+        scale="0.2  0.2 0.2"
+        gltf-model="#pipe"
+        animation-mixer>
+        </a-entity>
+        <a-entity   position="0 -0.4 0" 
+        rotation="0 0 180"
+        scale="0.2  0.2 0.2"
+        gltf-model="#pipe"
+        animation-mixer>
+        </a-entity>
+      </a-entity>
+
+    </a-marker>
+    
+
+      <!-- plantnado     -->
+     <a-marker type='pattern' url='./trackers/plant_tornado.patt'>
+
+            <a-entity rotation="-90 0 0" >
+
+              <a-entity   position="0 -0.8 0" 
+              scale="0.1  0.1 0.1"
+              gltf-model="#blob"
+              animation-mixer 
+              animation="property: position; dur: 5000;
+                      to: 0 0.45 0; easing: linear; loop: true">
+              </a-entity>
+
+              <a-entity   position="0 -0.35 0" 
+              scale="0.2  0.2 0.2"
+              gltf-model="#plant"
+              animation-mixer
+              animation="property: rotation; dur: 5000;
+                      to: 0 360 0; easing: linear; loop: true">
+              </a-entity>
+
+            </a-entity>
+
+            <a-entity id="pipes" rotation="-90 0 0" >
+              <a-entity   position="0 0.4 0" 
+              scale="0.2  0.2 0.2"
+              gltf-model="#pipe"
+              animation-mixer>
+              </a-entity>
+              <a-entity   position="0 -0.4 0" 
+              rotation="0 0 180"
+              scale="0.2  0.2 0.2"
+              gltf-model="#pipe"
+              animation-mixer>
+              </a-entity>
+            </a-entity>
+
+      </a-marker> 
+
+      <!-- Splashy goop into spikes - Meg1 -->
+      <a-marker type='pattern' url='./trackers/drill.patt'>
+        <!-- <a-entity position="0 0 -1.6"> -->
+        <a-entity animation-mixer id="#SplashyCube" gltf-model="#SplashyCube"  rotation="-90 0 0" scale="0.3 0.05 0.1" position="-0.1 0 0.2" visible="true" shadow="cast: false" ></a-entity>
+
+        <a-entity animation-mixer id="#Circle.002" gltf-model="#Circle.002"  rotation="0 0 90" scale="0.2 0.2 0.2" position="0.5 0 0" visible="true" shadow="cast: false" ></a-entity>
+        <a-entity animation-mixer id="#Circle.003" gltf-model="#Circle.002"  rotation="0 0 90"scale="0.2 0.2 0.2" position="0.35 0 0" visible="true" shadow="cast: false" ></a-entity> 
+        <a-entity animation-mixer id="#Circle.004" gltf-model="#Circle.002"  rotation="0 0 90"scale="0.2 0.2 0.2" position="0.2 0 0" visible="true" shadow="cast: false" ></a-entity>
+        <a-entity animation-mixer id="#Circle.005" gltf-model="#Circle.002"  rotation="0 0 90"scale="0.2 0.2 0.2" position="0.05 0 0" visible="true" shadow="cast: false" ></a-entity>
+        <a-entity animation-mixer id="#Circle.006" gltf-model="#Circle.002"  rotation="0 0 90"scale="0.2 0.2 0.2" position="-0.1 0 0" visible="true" shadow="cast: false" ></a-entity>
+        <a-entity animation-mixer id="#Circle.007" gltf-model="#Circle.002"  rotation="0 0 90"scale="0.2 0.2 0.2" position="-0.25 0 0" visible="true" shadow="cast: false" ></a-entity>
+        <a-entity animation-mixer id="#Circle.008" gltf-model="#Circle.002"  rotation="0 0 90"scale="0.2 0.2 0.2" position="-0.4 0 0" visible="true" shadow="cast: false" ></a-entity>
+        <a-entity animation-mixer id="#Circle.009" gltf-model="#Circle.002"  rotation="0 0 90"scale="0.2 0.2 0.2" position="-0.55 0 0" visible="true" shadow="cast: false" ></a-entity>
+        <a-entity animation-mixer id="#Circle.010" gltf-model="#Circle.002"  rotation="0 0 90"scale="0.2 0.2 0.2" position="-0.7 0 0" visible="true" shadow="cast: false" ></a-entity> 
+        <a-entity id="pipes" rotation="0 0 90" >
+          <a-entity   position="0 0.4 0" 
+          scale="0.2  0.2 0.2"
+          gltf-model="#pipe"
+          animation-mixer>
+          </a-entity>
+          <a-entity   position="0 -0.4 0" 
+          rotation="0 0 180"
+          scale="0.2  0.2 0.2"
+          gltf-model="#pipe"
+          animation-mixer>
+          </a-entity>
+        </a-entity>
+        <!-- </a-entity> -->
+      </a-marker>
+     
+
+      <!-- pipey spikes  Meg2 -->
+      <a-marker type='pattern' url='./trackers/spikey_discs.patt'>
+        <!-- <a-entity scale="0.75 0.75 0.75"> -->
+        <a-entity animation-mixer id="#spike" gltf-model="#Spike"  rotation="0 90 0"scale="0.2 0.2 0.2" position="0.2 0 0" visible="true" shadow="cast: false" ></a-entity>
+        <a-entity animation-mixer id="#spike" gltf-model="#Spike"  rotation="0 90 0"scale="0.2 0.2 0.2" position="0.1 0 0" visible="true" shadow="cast: false" ></a-entity>
+        <a-entity animation-mixer id="#spike" gltf-model="#Spike"  rotation="0 90 0"scale="0.2 0.2 0.2" position="0.0 0 0" visible="true" shadow="cast: false" ></a-entity>
+        <a-entity animation-mixer id="#spike" gltf-model="#Spike"  rotation="0 90 0"scale="0.2 0.2 0.2" position="-0.1 0 0" visible="true" shadow="cast: false" ></a-entity>
+        <a-entity animation-mixer id="#spike" gltf-model="#Spike"  rotation="0 90 0"scale="0.2 0.2 0.2" position="-0.2 0 0" visible="true" shadow="cast: false" ></a-entity>
+        <a-entity animation-mixer id="#spike" gltf-model="#Spike"  rotation="0 90 0"scale="0.2 0.2 0.2" position="-0.3 0 0" visible="true" shadow="cast: false" ></a-entity>
+        <a-entity animation-mixer id="#spike" gltf-model="#Spike"  rotation="0 90 0"scale="0.2 0.2 0.2" position="-0.4 0 0" visible="true" shadow="cast: false" ></a-entity>
+
+        <a-entity animation-mixer id="#lilPipes" gltf-model="#LilPipes"  rotation="90 0 0"scale="0.2 0.2 0.2" position="0.15 0.5 -0.0" visible="true" shadow="cast: false" ></a-entity>
+        <a-entity animation-mixer id="#lilPipes" gltf-model="#LilPipes"  rotation="90 0 180"scale="0.2 0.2 0.2" position="-0.05 0.5 -0.0" visible="true" shadow="cast: false" ></a-entity>
+        
+        <a-entity id="pipes" rotation="-90 0 0" >
+          <a-entity   position="0 0.4 0" 
+          scale="0.2  0.2 0.2"
+          gltf-model="#pipe"
+          animation-mixer>
+          </a-entity>
+          <a-entity   position="0 -0.4 0" 
+          rotation="0 0 180"
+          scale="0.2  0.2 0.2"
+          gltf-model="#pipe"
+          animation-mixer>
+          </a-entity>
+        </a-entity>
+        <!-- </a-entity> -->
+
+      </a-marker>
+     
+
+
+
+       <!-- pyramid  -->
+      <a-marker type='pattern' url='./trackers/patterMarkerzSqr.patt'>
+        <a-entity scale="0.75 0.75 0.75">
+        <a-entity scale="0.75 0.75 0.75" 
+        rotation="-90 0 0">
+                
+                <a-entity    
+                scale="0.3 0.3 0.3"
+                gltf-model="#pyramid">
+                </a-entity>     
+                  
+
+                <a-entity    
+                scale="0.3 0.3 0.3"
+                gltf-model="#pyramidblob"
+                animation-mixer >        
+                </a-entity>
+                
+
+                <a-entity    
+                scale="0.3 0.3 0.3"
+                gltf-model="#pyramidtube"
+                animation-mixer >        
+                </a-entity>
+
+               
+                <a-entity
+                rotation="0 180 0"
+                scale="0.3 0.3 0.3"
+                gltf-model="#pyramidtube"
+                animation-mixer >        
+                </a-entity>
+                
+
+        </a-entity>
+
+        <a-entity id="pipes" rotation="-90 0 0" >
+          <a-entity   position="0 0.4 0" 
+          scale="0.2  0.2 0.2"
+          gltf-model="#pipe"
+          animation-mixer>
+          </a-entity>
+          <a-entity   position="0 -0.4 0" 
+          rotation="0 0 180"
+          scale="0.2  0.2 0.2"
+          gltf-model="#pipe"
+          animation-mixer>
+          </a-entity>
+        </a-entity>
+      </a-entity>
+      </a-marker>
+   
+
+      
+      <!-- drill -->
+      <a-marker type='pattern' url='./trackers/drill_cauldron.patt'>
+
+        <a-entity position="0 0 0.4" 
+        rotation="-90 0 0">
+                <a-entity    
+                scale="0.07 0.07 0.07"
+                gltf-model="#drill"
+                animation-mixer 
+                animation="property: rotation; dur: 2500;
+                            to: 0 360 0; easing: linear; loop: true">        
+        </a-entity>
+
+        
+        </a-entity>
+
+         <a-entity id="pipes" rotation="-90 0 0" >
+              <a-entity   position="0 0.4 0" 
+              scale="0.2  0.2 0.2"
+              gltf-model="#pipe"
+              animation-mixer>
+              </a-entity>
+              <a-entity   position="0 -0.4 0" 
+              rotation="0 0 180"
+              scale="0.2  0.2 0.2"
+              gltf-model="#pipe"
+              animation-mixer>
+              </a-entity>
+            </a-entity>
+
+      </a-marker>
+
+      <!-- caged --> 
+      <a-marker type='pattern' url='./trackers/caged.patt'>
+
+        <a-entity  
+            animation-mixer 
+            animation="property: rotation; dur: 30000;
+                        to: 360 360 0; easing: linear; loop: true">        
+
+            <a-entity    
+            rotation="0 0 0"
+            scale="0.3 0.3 0.3"
+            gltf-model="#cage"
+            >
+            </a-entity>
+
+            <a-entity    
+            rotation="0 0 0"
+            scale="0.3 0.3 0.3"
+            gltf-model="#caged"
+            animation-mixer 
+            >
+            </a-entity>
+        </a-entity>
+
+        <a-entity id="pipes" rotation="-90 0 0" >
+              <a-entity   position="0 0.4 0" 
+              scale="0.2  0.2 0.2"
+              gltf-model="#pipe"
+              animation-mixer>
+              </a-entity>
+              <a-entity   position="0 -0.4 0" 
+              rotation="0 0 180"
+              scale="0.2  0.2 0.2"
+              gltf-model="#pipe"
+              animation-mixer>
+              </a-entity>
+            </a-entity>
+      </a-marker>
+      
+   
+
+
+      <!-- eye marker-->
+      <a-marker type='pattern' url='./trackers/botEye.patt'>
+
+        <a-entity scale=" 0.5 0.5 0.5" >
+          <a-entity    
+          rotation="0 0 0"
+          scale="0.3 0.3 0.3"
+          gltf-model="#eye"
+          animation-mixer 
+          animation="property: rotation; dur: 10000;
+                      to: 360 360 0; easing: linear; loop: true">>
+          </a-entity>
+
+          <a-entity    
+          rotation="0 0 0"
+          scale="0.25 0.25 0.25"
+          gltf-model="#eye"
+          animation-mixer 
+          animation="property: rotation; dur: 10000;
+                      to: 0 360 -360; easing: linear; loop: true">>
+          </a-entity>
+
+          <a-entity   
+          rotation="0 0 0"
+          scale="0.2 0.2 0.2"
+          gltf-model="#eye"
+          animation-mixer 
+          animation="property: rotation; dur: 10000;
+                      to: 0 -360 0; easing: linear; loop: true">>
+          </a-entity>
+
+          <a-entity   
+          rotation="0 0 0"
+          scale="0.2 0.2 0.2"
+          gltf-model="#blob"
+          animation-mixer 
+          animation="property: rotation; dur: 10000;
+                      to: 360 -360 -360; easing: linear;  loop: true">>
+          </a-entity>
+        </a-entity>
+
+        <a-entity id="pipes" rotation="-90 0 0" >
+          <a-entity   position="0 0.4 0" 
+          scale="0.2  0.2 0.2"
+          gltf-model="#pipe"
+          animation-mixer>
+          </a-entity>
+          <a-entity   position="0 -0.4 0" 
+          rotation="0 0 180"
+          scale="0.2  0.2 0.2"
+          gltf-model="#pipe"
+          animation-mixer>
+          </a-entity>
+        </a-entity>
+
+    </a-marker>
+
+      
+      <a-entity camera></a-entity>
+
+    </a-scene>
+  </div>
+
+  <!-- <button onclick="openFullscreen();" style="display:block; visibility: visible; position: absolute; z-index: 999; top: 0px; left: 0px;">Open</button>
+  <button onclick="closeFullscreen();" style="display:block; visibility: visible; position: absolute; z-index: 999; top: 0px; left: 70px;">Close</button> -->
+   
+  </body>
+
+
+</html>
