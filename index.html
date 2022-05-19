@@ -94,7 +94,8 @@ var tapped = 0;
 
         <!-- pyramid .gltf -->
         <a-asset-item id="pyramid" src="models/pyramid/pyramid.glb" ></a-asset-item>
-        <a-asset-item id="pyramidblob" src="models/pyramid/pyramid goop.glb" ></a-asset-item>
+        <!-- take out pyramid blob for size/loading purposes-->
+        <!-- <a-asset-item id="pyramidblob" src="models/pyramid/pyramid goop.glb" ></a-asset-item> -->
         <a-asset-item id="pyramidtube" src="models/pyramid/pyramid tube.glb" ></a-asset-item>
 
         <!-- cauldron .gltf -->
@@ -115,9 +116,7 @@ var tapped = 0;
 				<a-asset-item id="SplashyCube" src="./models/spinningSpikyDiscsWithSplash/splashdCube.glb"></a-asset-item> 
 
         <!-- SpinnySpikyDiscs -->
-        <a-asset-item id="BlueBlob" src="./models/spinningSpikyDiscs/blueBlob.glb"></a-asset-item>
 				<a-asset-item id="LilPipes" src="./models/spinningSpikyDiscs/pipes.glb"></a-asset-item>
-				<a-asset-item id="Spike" src="./models/spinningSpikyDiscs/spike.glb"></a-asset-item>
 				
       </a-assets>
 
@@ -353,13 +352,13 @@ var tapped = 0;
       <!-- pipey spikes  Meg2 -->
       <a-marker type='pattern' url='./trackers/spikey_discs.patt'>
         <!-- <a-entity scale="0.75 0.75 0.75"> -->
-        <a-entity animation-mixer id="#spike" gltf-model="#Spike"  rotation="0 90 0"scale="0.2 0.2 0.2" position="0.2 0 0" visible="true" shadow="cast: false" ></a-entity>
-        <a-entity animation-mixer id="#spike" gltf-model="#Spike"  rotation="0 90 0"scale="0.2 0.2 0.2" position="0.1 0 0" visible="true" shadow="cast: false" ></a-entity>
-        <a-entity animation-mixer id="#spike" gltf-model="#Spike"  rotation="0 90 0"scale="0.2 0.2 0.2" position="0.0 0 0" visible="true" shadow="cast: false" ></a-entity>
-        <a-entity animation-mixer id="#spike" gltf-model="#Spike"  rotation="0 90 0"scale="0.2 0.2 0.2" position="-0.1 0 0" visible="true" shadow="cast: false" ></a-entity>
-        <a-entity animation-mixer id="#spike" gltf-model="#Spike"  rotation="0 90 0"scale="0.2 0.2 0.2" position="-0.2 0 0" visible="true" shadow="cast: false" ></a-entity>
-        <a-entity animation-mixer id="#spike" gltf-model="#Spike"  rotation="0 90 0"scale="0.2 0.2 0.2" position="-0.3 0 0" visible="true" shadow="cast: false" ></a-entity>
-        <a-entity animation-mixer id="#spike" gltf-model="#Spike"  rotation="0 90 0"scale="0.2 0.2 0.2" position="-0.4 0 0" visible="true" shadow="cast: false" ></a-entity>
+        <a-entity animation-mixer id="#Circle.002" gltf-model="#Circle.002"  rotation="0 0 90" scale="0.2 0.2 0.2" position="0.3 0 0" visible="true" shadow="cast: false" ></a-entity>
+        <a-entity animation-mixer id="#Circle.002" gltf-model="#Circle.002"  rotation="0 0 90" scale="0.2 0.2 0.2" position="0.2 0 0" visible="true" shadow="cast: false" ></a-entity>
+        <a-entity animation-mixer id="#Circle.002" gltf-model="#Circle.002"  rotation="0 0 90"scale="0.2 0.2 0.2" position="0.1 0 0" visible="true" shadow="cast: false" ></a-entity>
+        <a-entity animation-mixer id="#Circle.002" gltf-model="#Circle.002"  rotation="0 0 90"scale="0.2 0.2 0.2" position="-0.0 0 0" visible="true" shadow="cast: false" ></a-entity>
+        <a-entity animation-mixer id="#Circle.002" gltf-model="#Circle.002"  rotation="0 0 90"scale="0.2 0.2 0.2" position="-0.1 0 0" visible="true" shadow="cast: false" ></a-entity>
+        <a-entity animation-mixer id="#Circle.002" gltf-model="#Circle.002"  rotation="0 0 90"scale="0.2 0.2 0.2" position="-0.2 0 0" visible="true" shadow="cast: false" ></a-entity>
+        <a-entity animation-mixer id="#Circle.002" gltf-model="#Circle.002"  rotation="0 0 90"scale="0.2 0.2 0.2" position="-0.3 0 0" visible="true" shadow="cast: false" ></a-entity>
 
         <a-entity animation-mixer id="#lilPipes" gltf-model="#LilPipes"  rotation="90 0 0"scale="0.2 0.2 0.2" position="0.15 0.5 -0.0" visible="true" shadow="cast: false" ></a-entity>
         <a-entity animation-mixer id="#lilPipes" gltf-model="#LilPipes"  rotation="90 0 180"scale="0.2 0.2 0.2" position="-0.05 0.5 -0.0" visible="true" shadow="cast: false" ></a-entity>
@@ -396,11 +395,11 @@ var tapped = 0;
                 </a-entity>     
                   
 
-                <a-entity    
+                <!-- <a-entity    
                 scale="0.3 0.3 0.3"
                 gltf-model="#pyramidblob"
                 animation-mixer >        
-                </a-entity>
+                </a-entity> -->
                 
 
                 <a-entity    
