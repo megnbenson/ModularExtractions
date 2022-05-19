@@ -10,6 +10,7 @@
 
   <!-- Ellements to do loading screen -->
   <head>
+    <title>Modular Extractions</title>
     <style>
     .loading { display:block; visibility: visible; position: absolute; z-index: 999; top: 0px; left: 0px; width: 100%; height: 100%;background-image: url("./originals symbols/drill_cauldron.png"); background-position: center; background-repeat: no-repeat; background-size: cover; }
     </style>
@@ -25,9 +26,10 @@
                 element.style.display = "none";
             };
           console.log("loaded!")
-        }
+       }
 
-      var elem = document.documentElement;
+       // makes fullscreen when loading screen clicked
+       var elem = document.documentElement;
       function openFullscreen() {
         if (elem.requestFullscreen) {
           elem.requestFullscreen();
@@ -37,7 +39,7 @@
           elem.msRequestFullscreen();
         }
       }
-      
+      // not used but here if needed
       function closeFullscreen() {
         if (document.exitFullscreen) {
           document.exitFullscreen();
@@ -47,7 +49,6 @@
           document.msExitFullscreen();
         }
       }
-       
     </script>
     
     </head>
@@ -113,6 +114,47 @@
 				
       </a-assets>
 
+  <!-- noisey ground with blobs-->
+  <a-marker type='pattern' url='./trackers/soupy_cloth.patt'>
+            <a-entity rotation="-90 0 0" >
+
+              <a-entity   position="0 0.4 0" 
+              scale="0.2  0.2 0.2"
+              gltf-model="#timegoop"
+              animation-mixer>
+              </a-entity>
+
+              <a-entity   position="0 -0.8 0" 
+              scale="0.4  0.4 0.4"
+              gltf-model="#ground"
+              animation-mixer animation="property: material.opacity; dur: 500; from: 0.2; to: 1; direction: alternate; loop: true">
+              <!-- <a-animation attribute="material.opacity" dur="500" from="0.2" to="1" direction="alternate" repeat="indefinite"></a-animation> -->
+              </a-entity>
+
+              <a-entity   position="0 -0.4 0" 
+              rotation="180 0 0"
+              scale="0.2  0.2 0.2"
+              gltf-model="#timecone"
+              animation-mixer>
+              </a-entity>
+
+            </a-entity>
+
+     
+            <a-entity id="pipes" rotation="-90 0 0" >
+              <a-entity   position="0 0.4 0" 
+              scale="0.2  0.2 0.2"
+              gltf-model="#pipe"
+              animation-mixer>
+              </a-entity>
+              <a-entity   position="0 -0.4 0" 
+              rotation="0 0 180"
+              scale="0.2  0.2 0.2"
+              gltf-model="#pipe"
+              animation-mixer>
+              </a-entity>
+            </a-entity>
+      </a-marker>
 
  <!-- time  -->
      <a-marker type='pattern' url='./trackers/TimeMrkr.patt'>
@@ -525,10 +567,6 @@
 
     </a-scene>
   </div>
-
-  <!-- <button onclick="openFullscreen();" style="display:block; visibility: visible; position: absolute; z-index: 999; top: 0px; left: 0px;">Open</button>
-  <button onclick="closeFullscreen();" style="display:block; visibility: visible; position: absolute; z-index: 999; top: 0px; left: 70px;">Close</button> -->
-   
   </body>
 
 
